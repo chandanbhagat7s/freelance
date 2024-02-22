@@ -11,7 +11,8 @@ const morgan = require('morgan');
 
 const globalerror = require('./Controller/errorController');
 const assignRoute = require('./Routes/asignRoute');
-
+const path = require('path');
+const viewRoute = require('./Routes/viewRoutes');
 //access to env variable
 dotenv.config({ path: './config.env' });
 const PORT = process.env.PORT
@@ -26,6 +27,13 @@ mongoose.connect(process.env.DATABASE)
 
     })
 
+
+
+
+app.set("view engine", "pug");
+app.set('views', path.join(__dirname, 'Views'))
+// app.use(express.static(`${__dirname}/Public`))
+
 // using cookie parser to get the access in node app
 app.use(cookieParser())
 
@@ -36,6 +44,7 @@ app.use(morgan("dev"))
 
 
 // defining routes
+app.use('/', viewRoute)
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/assign', assignRoute)
 

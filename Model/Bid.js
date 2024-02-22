@@ -3,7 +3,7 @@
 
 const mongoose = require('mongoose');
 
-const bidSchema = new mongoose.Schema({
+const projectSchem = new mongoose.Schema({
     projectName: {
         type: String,
         required: [true, "Your are creating the project for community , which must have a name"],
@@ -36,8 +36,18 @@ const bidSchema = new mongoose.Schema({
 
 })
 
+
+projectSchem.pre(/^find/, function (next) {
+    // we define in schema the secrate field
+    // converted to regEX for all find.....
+    this.find({ hidden: { $ne: true } })
+
+    next()
+})
+
+
 // creating model 
-const Bid = mongoose.model("Bid", bidSchema);
+const Bid = mongoose.model("Bid", projectSchem);
 
 module.exports = Bid
 
