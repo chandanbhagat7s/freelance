@@ -36,8 +36,9 @@ const userSchema = new mongoose.Schema({
     photo: {
         type: String
     },
-    type: {
+    role: {
         type: String,
+        default: "user"
     }
 
 })

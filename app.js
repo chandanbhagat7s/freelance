@@ -10,6 +10,7 @@ const morgan = require('morgan');
 
 
 const globalerror = require('./Controller/errorController');
+const assignRoute = require('./Routes/asignRoute');
 
 //access to env variable
 dotenv.config({ path: './config.env' });
@@ -36,7 +37,7 @@ app.use(morgan("dev"))
 
 // defining routes
 app.use('/api/v1/users', userRouter)
-// app.get('/api/v1/assign', userRouter)
+app.use('/api/v1/assign', assignRoute)
 
 
 

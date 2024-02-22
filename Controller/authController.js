@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../Model/User");
 const appError = require("../utils/appError");
 const catchAsync = require("../utils/catchAsync");
+const Assign = require("../Model/Assigner");
 
 const createTokenSendRes = (id, res, statusCode, message) => {
 
@@ -38,31 +39,66 @@ const createTokenSendRes = (id, res, statusCode, message) => {
 
 
 exports.signUp = catchAsync(async (req, res, next) => {
-    console.log("came", req.body);
-    const { userName, email, password, phone, age, bio, } = req.body;
-    const newUser = await User.create({ userName, email, password, phone, age, bio });
+    if (req.baseUrl.includes('users')) {
 
-    console.log(newUser);
-    newUser.password = undefined;
-    createTokenSendRes(newUser._id, res, 201, newUser)
+
+        const { userName, email, password, phone, age, bio, } = req.body;
+        const newUser = await User.create({ userName, email, password, phone, age, bio });
+
+        console.log(newUser);
+        newUser.password = undefined;
+        createTokenSendRes(newUser._id, res, 201, newUser)
+    } else {
+
+
+        const { userName, email, password, phone, age, bio, } = req.body;
+        const newUser = await Assign.create({ userName, email, password, phone, age, bio });
+
+        console.log(newUser);
+        newUser.password = undefined;
+        createTokenSendRes(newUser._id, res, 201, newUser)
+    }
+
 });
 
 exports.login = catchAsync(async (req, res, next) => {
+    // console.log(req);
     const { email, password } = req.body;
-
     if (!email || !password) {
         return next(new appError("please enter credential for get into in ", 400));
     }
+    if (req.baseUrl.includes('users')) {
 
-    const user = await User.findOne({ email }).select('+password')
 
 
-    if (!user || !await user.correctPass(password, user.password)) {
 
-        return next(new appError("please enter valid email id and password", 400));
+
+        const user = await User.findOne({ email }).select('+password')
+
+
+        if (!user || !await user.correctPass(password, user.password)) {
+
+            return next(new appError("please enter valid email id and password", 400));
+        }
+        user.password = undefined
+        createTokenSendRes(user.id, res, 200, user)
+    } else {
+
+
+
+
+        const user = await Assign.findOne({ email }).select('+password')
+
+
+        if (!user || !await user.correctPass(password, user.password)) {
+
+            return next(new appError("please enter valid email id and password", 400));
+        }
+        user.password = undefined
+        createTokenSendRes(user.id, res, 200, user)
     }
-    user.password = undefined
-    createTokenSendRes(user.id, res, 200, user)
+
+
 
 })
 

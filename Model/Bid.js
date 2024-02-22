@@ -4,7 +4,7 @@
 const mongoose = require('mongoose');
 
 const bidSchema = new mongoose.Schema({
-    bidName: {
+    projectName: {
         type: String,
         required: [true, "Your are creating the project for community , which must have a name"],
         maxLenght: [30, "Project name is excedding the limit"]

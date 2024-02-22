@@ -1,13 +1,15 @@
 const Bid = require("../Model/Bid");
 const appError = require("../utils/appError");
+const catchAsync = require("../utils/catchAsync");
 
 
 exports.createProject = catchAsync(async (req, res, next) => {
-    const { userName, email, phone, age, bio, photo } = req.body;
-    if (!userName, !email, !phone, !age, !bio, photo) {
+    const { projectName, price, duration } = req.body;
+    console.log(req.user);
+    if (!projectName, !price, !duration) {
         return next(new appError("please provide all the details", 400))
     }
-    const bid = await Bid.create({ userName, email, phone, age, bio, photo })
+    const bid = await Bid.create({ projectName, price, duration, createrId: req.user._id })
 
     if (!bid) {
         return next(new appError("bid not created please try again", 500))
