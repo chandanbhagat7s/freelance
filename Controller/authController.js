@@ -38,9 +38,9 @@ const createTokenSendRes = (id, res, statusCode, message) => {
 
 
 exports.signUp = catchAsync(async (req, res, next) => {
-    console.log("came");
-    const { name, email, password, mobile } = req.body;
-    const newUser = await User.create({ name, email, password, mobile });
+    console.log("came", req.body);
+    const { userName, email, password, phone, age, bio, } = req.body;
+    const newUser = await User.create({ userName, email, password, phone, age, bio });
 
     console.log(newUser);
     newUser.password = undefined;

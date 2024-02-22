@@ -19,11 +19,16 @@ const bidSchema = new mongoose.Schema({
 
     },
     createrId: {
-        type: mongoose.mongo.objectID,
+        type: mongoose.mongo.ObjectId,
+        ref: 'Assign',
         required: [true, "project you are creating must have duration"]
 
     },
-    bids: [Object],
+    bids: {
+        type: [mongoose.mongo.ObjectId],
+        ref: 'User'
+
+    },
     hidden: {
         type: Boolean,
         default: false
@@ -34,7 +39,7 @@ const bidSchema = new mongoose.Schema({
 // creating model 
 const Bid = mongoose.model("Bid", bidSchema);
 
-module.exports = User
+module.exports = Bid
 
 
 

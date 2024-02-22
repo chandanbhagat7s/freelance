@@ -40,9 +40,9 @@ const assignSchema = new mongoose.Schema({
 })
 
 // creating model 
-const Assign = mongoose.model("Asign", assignSchema);
+const Assign = mongoose.model("Assign", assignSchema);
 
-module.exports = User
+module.exports = Assign
 
 
 
