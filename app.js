@@ -32,7 +32,7 @@ mongoose.connect(process.env.DATABASE)
 
 app.set("view engine", "pug");
 app.set('views', path.join(__dirname, 'Views'))
-// app.use(express.static(`${__dirname}/Public`))
+app.use(express.static(`${__dirname}/Public`))
 
 // using cookie parser to get the access in node app
 app.use(cookieParser())

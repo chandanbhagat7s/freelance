@@ -39,10 +39,18 @@ const createTokenSendRes = (id, res, statusCode, message) => {
 
 
 exports.signUp = catchAsync(async (req, res, next) => {
+    console.log("camedd", req.baseUrl);
     if (req.baseUrl.includes('users')) {
 
 
         const { userName, email, password, phone, age, bio, } = req.body;
+        const exist = await User.find({ email })
+        const exist1 = await Assign.find({ email })
+        console.log(exist, exist1);
+        if (exist || exist1) {
+            return next(new appError("email id already exists please try diffrent email id ", 404))
+        }
+
         const newUser = await User.create({ userName, email, password, phone, age, bio });
 
         console.log(newUser);
@@ -52,6 +60,14 @@ exports.signUp = catchAsync(async (req, res, next) => {
 
 
         const { userName, email, password, phone, age, bio, } = req.body;
+        const exist = await User.find({ email: req.body.email })
+        const exist1 = await Assign.find({ email: req.body.email })
+        console.log(req.body.email);
+        console.log(exist, exist1);
+
+        if (exist || exist1) {
+            return next(new appError("email id already exists please try diffrent email id ", 404))
+        }
         const newUser = await Assign.create({ userName, email, password, phone, age, bio });
 
         console.log(newUser);
