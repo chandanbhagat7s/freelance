@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     userName: {
         type: String,
         required: [true, "user must have a username"],
-        unique: [true, "the username already exits please try diffrent"]
+
 
     },
     password: {

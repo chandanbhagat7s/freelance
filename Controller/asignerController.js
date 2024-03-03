@@ -4,12 +4,12 @@ const catchAsync = require("../utils/catchAsync");
 
 
 exports.createProject = catchAsync(async (req, res, next) => {
-    const { projectName, price, duration } = req.body;
+    const { projectName, price, duration, about, description, deadline, title } = req.body;
     console.log(req.user);
     if (!projectName, !price, !duration) {
         return next(new appError("please provide all the details", 400))
     }
-    const bid = await Bid.create({ projectName, price, duration, createrId: req.user._id })
+    const bid = await Bid.create({ projectName, price, duration, about, description, deadline, title, createrId: req.user._id, })
 
     if (!bid) {
         return next(new appError("bid not created please try again", 500))
@@ -18,7 +18,7 @@ exports.createProject = catchAsync(async (req, res, next) => {
 
     res.status(200).send({
         status: true,
-        data: "Project created successfully"
+        data: "Project created and published successfully"
     })
 
 

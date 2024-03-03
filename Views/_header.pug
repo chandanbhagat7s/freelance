@@ -26,8 +26,15 @@
 
         if user
             form.d-flex.gap-2
-                a.btn(href="/login" class="bg-black text-white") Logout
-                a.btn.btn-outline-primary(href="/signup") Profile
+                if (user.role == 'assign')
+                    a.btn(class="bg-black text-white" href="/createBitForm" id="publishBtn") Publish New Project
+
+
+                a.btn(class="bg-black text-white" id="logoutbtn") Logout
+                a.btn.btn-outline-primary(href="/profile") Profile
+
+
+
             //- <a class="text-sm font-medium hover:underline underline-offset-4" href="#">
             //-     |Features
             //- </a>

@@ -21,7 +21,7 @@ const projectSchem = new mongoose.Schema({
     createrId: {
         type: mongoose.mongo.ObjectId,
         ref: 'Assign',
-        required: [true, "project you are creating must have duration"]
+        required: [true, "project you are creating must have Owner"]
 
     },
     bids: {
@@ -32,8 +32,27 @@ const projectSchem = new mongoose.Schema({
     hidden: {
         type: Boolean,
         default: false
+    },
+    title: {
+        type: String,
+        required: [true, "please provide title of project"]
+    },
+    description: {
+        type: String,
+        required: [true, "please provide description of project"]
+    },
+    deadline: {
+        type: String,
+        required: [true, "please provide deadline of project"]
+    }
+    ,
+    about: {
+        type: String,
+        required: [true, "please provide about  of project"]
     }
 
+}, {
+    timestamps: true
 })
 
 
