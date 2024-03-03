@@ -60,7 +60,6 @@ export const LogoutUser = async () => {
 
 
 
-<<<<<<< HEAD
 
 
 
@@ -72,7 +71,7 @@ export const sendProjectRequest = async (data) => {
         console.log("data iside is ", data);
         const res = await axios.post("http://127.0.0.1:3004/api/v1/users/createProjectRequest", { ...data, assignId: localData.assignid, bidId: localData.projectid })
         if (res.data.status) {
-            alertt("success", "you are succesfully logout !!!")
+            alertt("success", "Request is submitted !")
             setTimeout(() => {
                 location.assign("/")
             }, [500])
@@ -87,8 +86,6 @@ export const sendProjectRequest = async (data) => {
 
 
 
-=======
->>>>>>> 99e263e19acbfb7ac0faf4a31d103a293a1d70d6
 export const submitAssignForm = async (data, id) => {
     try {
         if (data.password !== data.cnfPassword) {

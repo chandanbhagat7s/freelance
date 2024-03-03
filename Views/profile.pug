@@ -64,4 +64,77 @@ block content
 
 
 
+    if (user)
+        if (user.role == 'user' && project)
+            .p-2.text-2xl.font-bold.text-center.uppercase.my-3 Your Requested Project
+            .flex.justify-around.flex-wrap.space-y-5
+                each p in project
+
+                    div(class=" max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow w-full lg:w-1/3 hover:scale-105 ease-in")
+
+
+                        p.p-1.uppercase created By
+                        div.my-2.rounded.border-1.border-black.flex.space-x-2.py-3.justify-around
+                            <div class="w-12 h-12 relative rounded-full overflow-hidden">
+                                <img src="https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=" width="64" height="64" alt="Avatar" class="object-cover w-full h-full"  />
+                            </div>
+                            p.p-2.font-bold.uppercase= `${p.assignId.userName}`
+                            p.p-2 10/2/3
+                        h5(class=" mb-2 text-2xl font-bold tracking-tight text-gray-900 ")=p.bidId.projectName
+                        p(class=" mb-3  font-bold") Title : 
+                            span(class="font-normal")=`  ${p.bidId.title} `
+                        p(class=" mb-3  font-bold") About : 
+                            span(class="font-normal")=`  ${p.bidId.about} `
+                        p(class=" mb-3  font-bold") To be completed in : 
+                            span(class="font-normal")=`  ${p.bidId.duration} `
+                        p(class=" mb-3  font-bold") Price : 
+                            span(class="font-normal")=`  ${p.bidId.price} `
+                        p(class=" mb-3  font-bold") Deadline : 
+                            span(class="font-normal")=`  ${p.bidId.deadline} `
+                        p(class=" font-bold ") Description : 
+                            div(class="font-normal text-gray-500 text-base my-3")=`  ${p.bidId.description} `
+                        
+
+
+    if (user)
+        if (user.role == 'assign' && project)
+            .p-2.text-2xl.font-bold.text-center.uppercase.my-3 Your Requested Project
+            .flex.justify-around.flex-wrap.space-y-5
+                each p in project
+
+                    div(class=" max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow w-full lg:w-1/3 hover:scale-105 ease-in")
+
+
+                        p.p-1.uppercase created By
+                        div.my-2.rounded.border-1.border-black.flex.space-x-2.py-3.justify-around
+                            <div class="w-12 h-12 relative rounded-full overflow-hidden">
+                                <img src="https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=" width="64" height="64" alt="Avatar" class="object-cover w-full h-full"  />
+                            </div>
+                            p.p-2.font-bold.uppercase= `${user.userName}`
+                            //- p.p-2= `${p.assignId.createdAt}`
+                        h5(class=" mb-2 text-2xl font-bold tracking-tight text-gray-900 ")=p.projectName
+                        p(class=" mb-3  font-bold") Title : 
+                            span(class="font-normal")=`  ${p.title} `
+                        p(class=" mb-3  font-bold") About : 
+                            span(class="font-normal")=`  ${p.about} `
+                        p(class=" mb-3  font-bold") To be completed in : 
+                            span(class="font-normal")=`  ${p.duration} `
+                        p(class=" mb-3  font-bold") Price : 
+                            span(class="font-normal")=`  ${p.price} `
+                        p(class=" mb-3  font-bold") Deadline : 
+                            span(class="font-normal")=`  ${p.deadline} `
+                        p(class=" font-bold ") Description : 
+                        div.flex.my-2.space-y-2.flex-col.p-1.w-full
+                            a.px-3.py-2.bg-black.text-white.rounded(id="projectAssignFormBtn" href="/assignsignup") Fill the Form 
+                            a.px-3.py-2.bg-black.text-white.rounded(id="projectAssignFormBtn" href="/assignsignup") Fill the Form 
+                            a.px-3.py-2.bg-black.text-white.rounded(id="projectAssignFormBtn" href="/assignsignup") Fill the Form 
+
+                        
+
+
+
+
+
+
+
 
