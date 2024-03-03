@@ -31,7 +31,7 @@ const createTokenSendRes = (id, res, statusCode, message) => {
 
     // we will set cookies 
     res.status(statusCode).json({
-        status: "success",
+        status: true,
         user: message
 
     })
@@ -42,16 +42,19 @@ exports.signUp = catchAsync(async (req, res, next) => {
     console.log("camedd", req.baseUrl);
     if (req.baseUrl.includes('users')) {
 
-
+        console.log("req.body", req.body);
         const { userName, email, password, phone, age, bio, } = req.body;
         const exist = await User.find({ email })
         const exist1 = await Assign.find({ email })
-        console.log(exist, exist1);
-        if (exist || exist1) {
+        console.log(exist.length, exist1.length);
+        if (exist.length > 0 || exist1.length > 0) {
             return next(new appError("email id already exists please try diffrent email id ", 404))
         }
 
         const newUser = await User.create({ userName, email, password, phone, age, bio });
+        if (!newUser) {
+            return next(new appError("user no create0 ", 400))
+        }
 
         console.log(newUser);
         newUser.password = undefined;
@@ -63,10 +66,10 @@ exports.signUp = catchAsync(async (req, res, next) => {
         const exist = await User.find({ email: req.body.email })
         const exist1 = await Assign.find({ email: req.body.email })
         console.log(req.body.email);
-        console.log(exist, exist1);
+        // console.log(exist.length, exist1.length);
 
-        if (exist || exist1) {
-            return next(new appError("email id already exists please try diffrent email id ", 404))
+        if (exist.length > 0 || exist1.length > 0) {
+            return next(new appError("email id already exists please try diffrent email id ", 400))
         }
         const newUser = await Assign.create({ userName, email, password, phone, age, bio });
 
@@ -127,5 +130,5 @@ exports.logout = function (req, res) {
         httpOnly: true
     })
 
-    res.status(200).json({ status: 'success' })
+    res.status(200).json({ status: true, })
 }

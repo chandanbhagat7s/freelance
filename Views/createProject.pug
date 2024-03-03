@@ -1,0 +1,63 @@
+extends home
+block content 
+
+
+
+
+
+    .flex.min-h-screen.flex-col.items-center.justify-center(class='')
+        .rounded-lg.p-8.text-white(class='bg-gray-500 py-5 w-full lg:w-3/4')
+            h1.text-center.text-4xl.font-bold Create Project
+            p.mt-2.text-center Please provide all the details briefly
+            form.mt-8.space-y-6(id="projectForm")
+                div(class="grid grid-cols-1 lg:grid-cols-2")
+                    .flex.items-center(class="w-full lg:w-3/4 m-3")
+                        p.text-sm.font-semibold(class="basis-1/4") Project Name
+                        input.flex.h-10.text-sm.ring-offset-background.w-full.rounded-md.border-2.border-gray-300.bg-transparent.py-2.px-4.leading-tight.text-white.placeholder-gray-300(class='file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500', placeholder='projectName', type='text' id="projectName" required="true")
+
+                    .flex.items-center(class="w-full lg:w-3/4 m-3")
+                        p.text-sm.font-semibold(class="basis-1/4")  Title
+                        input.flex.h-10.text-sm.ring-offset-background.w-full.rounded-md.border-2.border-gray-300.bg-transparent.py-2.px-4.leading-tight.text-white.placeholder-gray-300(class='file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500', placeholder='title', type='text' id="title" required="true")
+
+
+                    .flex.items-center(class="w-full lg:w-3/4 m-3")
+                        p.text-sm.font-semibold(class="basis-1/4")  price
+                        input.flex.h-10.text-sm.ring-offset-background.w-full.rounded-md.border-2.border-gray-300.bg-transparent.py-2.px-4.leading-tight.text-white.placeholder-gray-300(class='file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500', placeholder='price', type='text' id="price" required="true")
+
+
+                    .flex.items-center(class="w-full lg:w-3/4 m-3")
+                        p.text-sm.font-semibold(class="basis-1/4")   About
+                        input.flex.h-10.text-sm.ring-offset-background.w-full.rounded-md.border-2.border-gray-300.bg-transparent.py-2.px-4.leading-tight.text-white.placeholder-gray-300(class='file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500', placeholder='About', type='text' id="about")
+
+                    .flex.items-center(class="w-full lg:w-3/4 m-3")
+                        p.text-sm.font-semibold(class="basis-1/4")  duration
+                        input.flex.h-10.text-sm.ring-offset-background.w-full.rounded-md.border-2.border-gray-300.bg-transparent.py-2.px-4.leading-tight.text-white.placeholder-gray-300(class='file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500', placeholder='duration', type='text' id="duration" required="true")
+
+                    .flex.items-center(class="w-full lg:w-3/4 m-3")
+                        p.text-sm.font-semibold(class="basis-1/4")  description
+                        textarea.flex.h-10.text-sm.ring-offset-background.w-full.rounded-md.border-2.border-gray-300.bg-transparent.py-2.px-4.leading-tight.text-white.placeholder-gray-300(class='file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500', placeholder='description', type='text' id="description" required="true")
+
+
+
+                    -function getCurrentDate() {const now = new Date();const year = now.getFullYear();const month = String(now.getMonth() + 1).padStart(2, '0');const day = String(now.getDate()).padStart(2, '0');return `${year}-${month}-${day}`;}
+                    .flex.items-center(class="w-full lg:w-3/4 m-3")
+                        p.text-sm.font-semibold(class="basis-1/4")  deadline
+                        input.flex.h-10.text-sm.ring-offset-background.w-full.rounded-md.border-2.border-gray-300.bg-transparent.py-2.px-4.leading-tight.text-white.placeholder-gray-300(class='file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500', placeholder='deadline', type='date' id="deadline" required="true" )
+
+
+
+
+
+
+
+
+
+                    div(class="w-full flex justify-center")
+                        button.inline-flex.items-center.justify-center.whitespace-nowrap.text-sm.ring-offset-background.transition-colors.h-10.w-full.rounded-md.bg-black.text-white.py-2.px-4.font-semibold.text-black(class='focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-gray-800 w-25 mt-5 ' type="submit")   | Create Project
+
+
+
+    //- -console.log("chandan");
+    //- -function getCurrentDate() {const now = new Date();const year = now.getFullYear();const month = String(now.getMonth() + 1).padStart(2, '0');const day = String(now.getDate()).padStart(2, '0');return `${year}-${month}-${day}`;}
+    
+    //-  -console.log(getCurrentDate());

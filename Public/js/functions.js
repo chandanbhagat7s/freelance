@@ -12,14 +12,20 @@ export const loginFormIn = async (data, id) => {
                 ...data
             })
             console.log(res);
-            if (res.data.status == 'success') {
+            if (res.data.status) {
+                setTimeout(() => {
+                    location.assign("/")
+                }, [1000]);
                 alertt("success", "logged in successfully ")
             }
         } else {
             res = await axios.post("http://127.0.0.1:3004/api/v1/assign/login", {
                 ...data
             })
-            if (res.data.status == 'success') {
+            if (res.data.status) {
+                setTimeout(() => {
+                    location.assign("/")
+                }, [1000]);
                 alertt("success", "logged in successfully ")
             }
         }
@@ -35,6 +41,25 @@ export const loginFormIn = async (data, id) => {
 
 
 }
+
+
+
+export const LogoutUser = async () => {
+    try {
+        const data = await axios.get("http://127.0.0.1:3004/api/v1/users/logout")
+        if (data.data.status) {
+            alertt("success", "you are succesfully logout !!!")
+            setTimeout(() => {
+                location.assign("/")
+            }, [500])
+        }
+    } catch (error) {
+        alertt("danger", "failed to logout !!!")
+    }
+}
+
+
+
 export const submitAssignForm = async (data, id) => {
     try {
         if (data.password !== data.cnfPassword) {
@@ -44,6 +69,12 @@ export const submitAssignForm = async (data, id) => {
             ...data
         })
         console.log(res);
+        if (res.data.status) {
+            alertt("success", "logged in successfully ")
+            setTimeout(() => {
+                location.assign("/")
+            }, [500])
+        }
     } catch (error) {
         alertt("danger", error.response.data.massage)
     }
@@ -55,17 +86,61 @@ export const submitAssignForm = async (data, id) => {
 }
 
 
+
+
+
+
+
+
+export const createProject = async (data) => {
+    try {
+
+        let res = await axios.post("http://127.0.0.1:3004/api/v1/assign/createProject", {
+            ...data
+        })
+        console.log(res);
+        if (res.data.status) {
+            alertt("success", "Project created successfully ")
+            setTimeout(() => {
+                location.assign("/")
+            }, [500])
+        }
+    } catch (error) {
+        alertt("danger", error.response.data.massage || "something went wrong")
+    }
+
+
+
+
+
+}
+
+
+
+
+
+
+
 export const submitFreeForm = async (data) => {
+    console.log("calledddddd****************");
     try {
         if (data.password !== data.cnfPassword) {
             return alertt("danger", "please enter password and confirm password correctly")
         }
+        console.log("came******************** insiden for requesting");
         let res = await axios.post("http://127.0.0.1:3004/api/v1/users/signup", {
             ...data
         })
         console.log(res);
+        if (res.data.status) {
+            alertt("success", "You are logged in successfully ")
+            setTimeout(() => {
+                location.assign('/')
+            }, [1000])
+        }
     } catch (error) {
-        alertt("danger", "something went wrong please try again to signup")
+        // console.log(error);
+        alertt("danger", error.response.data.massage || "something went wrong please try again to signup")
     }
 
 

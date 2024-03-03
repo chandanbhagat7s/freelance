@@ -44,6 +44,7 @@ If the signature of the JWT is valid, the verify() method will return the decode
     // now we need to check user still exists or password is changed then... we should not access the user okk 
     // if user is deleted meantime 
     // const freshUser = await User.findOne({ id: decode.id })
+    console.log(decode);
     let freshUser = await User.findById(decode.id)
     if (!freshUser) {
 
@@ -73,13 +74,19 @@ If the signature of the JWT is valid, the verify() method will return the decode
 
 // for render page authentication protection with no error
 exports.isLoggedIn = async (req, res, next) => {
-
+    console.log(req.cookies);
     if (req.cookies.jwt) {
 
         try {
-            const decode = await promisify(jwt.verify)(req.cookies.jwt, process.env.SECRET)
+            const decode = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET_KEY)
 
-            const freshUser = await User.findById(decode.id)
+            let freshUser = await User.findById(decode.id)
+            console.log("is", decode);
+            if (!freshUser) {
+
+                freshUser = await Assign.findById(decode.id)
+            }
+            console.log("is", decode);
             if (!freshUser) {
                 return next()
             }
@@ -92,6 +99,7 @@ exports.isLoggedIn = async (req, res, next) => {
             // future use 
             // req.user = freshUser
             res.locals.user = freshUser;
+            console.log(freshUser);
 
 
             return next();

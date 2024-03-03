@@ -32,6 +32,23 @@ const projectSchem = new mongoose.Schema({
     hidden: {
         type: Boolean,
         default: false
+    },
+    title: {
+        type: String,
+        required: [true, "please provide title of project"]
+    },
+    description: {
+        type: String,
+        required: [true, "please provide description of project"]
+    },
+    deadline: {
+        type: String,
+        required: [true, "please provide deadline of project"]
+    }
+    ,
+    about: {
+        type: String,
+        required: [true, "please provide about  of project"]
     }
 
 })

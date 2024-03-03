@@ -1,17 +1,31 @@
+const { default: axios } = require("axios");
+const Bid = require("../Model/Bid");
 
 
 
-exports.home = (req, res) => {
-    // request the data using api from DB
-    // console.log(tour);
-    res.status(200).render('landing', {
-        title: 'chandna'
-    })
+exports.home = async (req, res) => {
+    let project;
+    try {
+
+        project = await Bid.find();
+        console.log("pproject is ", project);
+        res.status(200).render('landing', {
+            title: 'Workup | Home',
+            project
+        })
+
+    } catch (error) {
+        console.log("error");
+        res.status(200).render('landing', {
+            title: 'Workup | Home',
+
+        })
+    }
+
+
 }
 exports.login = (req, res) => {
-    // request the data using api from DB
 
-    // console.log(tour);
 
 
 
@@ -20,25 +34,31 @@ exports.login = (req, res) => {
     })
 }
 exports.assignSignup = (req, res) => {
-    // request the data using api from DB
-
-    // console.log(tour);
 
 
 
     res.status(200).render('assignsignup', {
-        title: 'chandna'
+        title: 'Workup | Assign Signup 😊'
     })
 }
 exports.freeSignup = (req, res) => {
-    // request the data using api from DB
-
-    // console.log(tour);
 
 
 
     res.status(200).render('freesignup', {
-        title: 'chandna'
+        title: 'WorkUp | Signup 😊'
+    })
+}
+exports.createBidForm = (req, res) => {
+
+    res.status(200).render('createProject', {
+        title: 'Create Project | 🧑‍🏫'
+    })
+}
+exports.Profile = (req, res) => {
+
+    res.status(200).render('profile', {
+        title: 'Profile  | ME  🧑‍🏫'
     })
 }
 

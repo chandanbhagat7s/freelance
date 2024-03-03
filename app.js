@@ -15,6 +15,7 @@ const path = require('path');
 const viewRoute = require('./Routes/viewRoutes');
 //access to env variable
 dotenv.config({ path: './config.env' });
+
 const PORT = process.env.PORT
 
 // database connection 
