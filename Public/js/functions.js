@@ -60,6 +60,7 @@ export const LogoutUser = async () => {
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -86,6 +87,8 @@ export const sendProjectRequest = async (data) => {
 
 
 
+=======
+>>>>>>> 99e263e19acbfb7ac0faf4a31d103a293a1d70d6
 export const submitAssignForm = async (data, id) => {
     try {
         if (data.password !== data.cnfPassword) {

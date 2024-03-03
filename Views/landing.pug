@@ -132,6 +132,7 @@ block content
         if (user.role == 'user')
             .flex.justify-around.flex-wrap.space-y-5
                 each p in project
+<<<<<<< HEAD
 
                     div(class=" max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow w-full lg:w-1/3 hover:scale-105 ease-in")
 
@@ -143,6 +144,9 @@ block content
                             </div>
                             p.p-2.font-bold.uppercase= `${p.createrId.userName}`
                             p.p-2 10/2/3
+=======
+                    div(class=" max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow w-full lg:w-1/3 hover:scale-105 ease-in")
+>>>>>>> 99e263e19acbfb7ac0faf4a31d103a293a1d70d6
                         h5(class=" mb-2 text-2xl font-bold tracking-tight text-gray-900 ")=p.projectName
                         p(class=" mb-3  font-bold") Title : 
                             span(class="font-normal")=`  ${p.title} `
@@ -156,7 +160,11 @@ block content
                             span(class="font-normal")=`  ${p.deadline} `
                         p(class=" font-bold ") Description : 
                             div(class="font-normal text-gray-500 text-base my-3")=`  ${p.description} `
+<<<<<<< HEAD
                         a.inline-flex.items-center.px-3.py-2.text-sm.font-medium.text-center.text-white.bg-black.rounded-lg.hover.cursor-pointer( data-projectId=`${p._id}` data-assignId=`${p.createrId._id}` class="projectBtn")
+=======
+                        a.inline-flex.items-center.px-3.py-2.text-sm.font-medium.text-center.text-white.bg-black.rounded-lg.hover.cursor-pointer
+>>>>>>> 99e263e19acbfb7ac0faf4a31d103a293a1d70d6
                             | Get the project
 
 

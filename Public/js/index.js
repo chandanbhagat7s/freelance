@@ -60,6 +60,11 @@ if (requestProjectForm) {
 
 
 
+if (logoutbtn) {
+    logoutbtn.addEventListener("click", (e) => {
+        LogoutUser()
+    })
+}
 
 if (freeForm) {
     freeForm.addEventListener("submit", (e) => {
