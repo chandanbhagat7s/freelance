@@ -88145,7 +88145,6 @@ var createTokenSendRes = function createTokenSendRes(id, res, statusCode, messag
   }, undefined, {
     expiresIn: undefined
   });
-  console.log("token is ", token);
   var cookieOptions = {
     expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
     secure: true,
@@ -88171,33 +88170,30 @@ exports.signUp = catchAsync( /*#__PURE__*/function () {
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          console.log("camedd", req.baseUrl);
           if (!req.baseUrl.includes('users')) {
-            _context.next = 23;
+            _context.next = 19;
             break;
           }
-          console.log("req.body", req.body);
           _req$body = req.body, userName = _req$body.userName, email = _req$body.email, password = _req$body.password, phone = _req$body.phone, age = _req$body.age, bio = _req$body.bio;
-          _context.next = 6;
+          _context.next = 4;
           return User.find({
             email: email
           });
-        case 6:
+        case 4:
           exist = _context.sent;
-          _context.next = 9;
+          _context.next = 7;
           return Assign.find({
             email: email
           });
-        case 9:
+        case 7:
           exist1 = _context.sent;
-          console.log(exist.length, exist1.length);
           if (!(exist.length > 0 || exist1.length > 0)) {
-            _context.next = 13;
+            _context.next = 10;
             break;
           }
           return _context.abrupt("return", next(new appError("email id already exists please try diffrent email id ", 404)));
-        case 13:
-          _context.next = 15;
+        case 10:
+          _context.next = 12;
           return User.create({
             userName: userName,
             email: email,
@@ -88206,42 +88202,39 @@ exports.signUp = catchAsync( /*#__PURE__*/function () {
             age: age,
             bio: bio
           });
-        case 15:
+        case 12:
           newUser = _context.sent;
           if (newUser) {
-            _context.next = 18;
+            _context.next = 15;
             break;
           }
           return _context.abrupt("return", next(new appError("user no create0 ", 400)));
-        case 18:
-          console.log(newUser);
+        case 15:
           newUser.password = undefined;
           createTokenSendRes(newUser._id, res, 201, newUser);
-          _context.next = 39;
+          _context.next = 34;
           break;
-        case 23:
+        case 19:
           _req$body2 = req.body, _userName = _req$body2.userName, _email = _req$body2.email, _password = _req$body2.password, _phone = _req$body2.phone, _age = _req$body2.age, _bio = _req$body2.bio;
-          _context.next = 26;
+          _context.next = 22;
           return User.find({
             email: req.body.email
           });
-        case 26:
+        case 22:
           _exist = _context.sent;
-          _context.next = 29;
+          _context.next = 25;
           return Assign.find({
             email: req.body.email
           });
-        case 29:
+        case 25:
           _exist2 = _context.sent;
-          console.log(req.body.email);
-          // console.log(exist.length, exist1.length);
           if (!(_exist.length > 0 || _exist2.length > 0)) {
-            _context.next = 33;
+            _context.next = 28;
             break;
           }
           return _context.abrupt("return", next(new appError("email id already exists please try diffrent email id ", 400)));
-        case 33:
-          _context.next = 35;
+        case 28:
+          _context.next = 30;
           return Assign.create({
             userName: _userName,
             email: _email,
@@ -88250,12 +88243,12 @@ exports.signUp = catchAsync( /*#__PURE__*/function () {
             age: _age,
             bio: _bio
           });
-        case 35:
+        case 30:
           _newUser = _context.sent;
           console.log(_newUser);
           _newUser.password = undefined;
           createTokenSendRes(_newUser._id, res, 201, _newUser);
-        case 39:
+        case 34:
         case "end":
           return _context.stop();
       }
@@ -98534,10 +98527,9 @@ var submitFreeForm = exports.submitFreeForm = /*#__PURE__*/function () {
           }
           return _context6.abrupt("return", (0, _alerts.alertt)("danger", "please enter password and confirm password correctly"));
         case 4:
-          console.log("came******************** insiden for requesting");
-          _context6.next = 7;
+          _context6.next = 6;
           return _axios.default.post("http://127.0.0.1:3004/api/v1/users/signup", _objectSpread({}, data));
-        case 7:
+        case 6:
           res = _context6.sent;
           console.log(res);
           if (res.data.status) {
@@ -98546,18 +98538,18 @@ var submitFreeForm = exports.submitFreeForm = /*#__PURE__*/function () {
               location.assign('/');
             }, [1000]);
           }
-          _context6.next = 15;
+          _context6.next = 14;
           break;
-        case 12:
-          _context6.prev = 12;
+        case 11:
+          _context6.prev = 11;
           _context6.t0 = _context6["catch"](1);
           // console.log(error);
           (0, _alerts.alertt)("danger", _context6.t0.response.data.massage || "something went wrong please try again to signup");
-        case 15:
+        case 14:
         case "end":
           return _context6.stop();
       }
-    }, _callee6, null, [[1, 12]]);
+    }, _callee6, null, [[1, 11]]);
   }));
   return function submitFreeForm(_x7) {
     return _ref6.apply(this, arguments);
@@ -98586,6 +98578,13 @@ var loginForm = document.getElementById("loginForm");
 var projectForm = document.getElementById("projectForm");
 var logoutbtn = document.getElementById("logoutbtn");
 var projectBtn = document.getElementsByClassName("projectBtn");
+var getBids = document.getElementById("getBids");
+if (getBids) {
+  getBids.addEventListener("click", function (e) {
+    console.log(e);
+    // location.assign("/allBids")
+  });
+}
 if (logoutbtn) {
   logoutbtn.addEventListener("click", function (e) {
     LogoutUser();
@@ -98698,7 +98697,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52203" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56215" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

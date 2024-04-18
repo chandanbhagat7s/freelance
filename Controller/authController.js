@@ -10,7 +10,6 @@ const createTokenSendRes = (id, res, statusCode, message) => {
     let token = jwt.sign({ id }, process.env.JWT_SECRET_KEY, {
         expiresIn: process.env.JWT_EXPIRIR_IN
     });
-    console.log("token is ", token);
     let cookieOptions = {
         expires: new Date(
             Date.now() + 90 * 24 * 60 * 60 * 1000
@@ -39,14 +38,11 @@ const createTokenSendRes = (id, res, statusCode, message) => {
 
 
 exports.signUp = catchAsync(async (req, res, next) => {
-    console.log("camedd", req.baseUrl);
     if (req.baseUrl.includes('users')) {
 
-        console.log("req.body", req.body);
         const { userName, email, password, phone, age, bio, } = req.body;
         const exist = await User.find({ email })
         const exist1 = await Assign.find({ email })
-        console.log(exist.length, exist1.length);
         if (exist.length > 0 || exist1.length > 0) {
             return next(new appError("email id already exists please try diffrent email id ", 404))
         }
@@ -56,7 +52,6 @@ exports.signUp = catchAsync(async (req, res, next) => {
             return next(new appError("user no create0 ", 400))
         }
 
-        console.log(newUser);
         newUser.password = undefined;
         createTokenSendRes(newUser._id, res, 201, newUser)
     } else {
@@ -65,7 +60,6 @@ exports.signUp = catchAsync(async (req, res, next) => {
         const { userName, email, password, phone, age, bio, } = req.body;
         const exist = await User.find({ email: req.body.email })
         const exist1 = await Assign.find({ email: req.body.email })
-        console.log(req.body.email);
         // console.log(exist.length, exist1.length);
 
         if (exist.length > 0 || exist1.length > 0) {

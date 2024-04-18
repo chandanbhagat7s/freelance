@@ -14,6 +14,17 @@ const loginForm = document.getElementById("loginForm")
 const projectForm = document.getElementById("projectForm")
 const logoutbtn = document.getElementById("logoutbtn")
 const projectBtn = document.getElementsByClassName("projectBtn")
+const getBids = document.getElementById("getBids")
+
+
+
+if (getBids) {
+    getBids.addEventListener("click", (e) => {
+        console.log(e);
+        // location.assign("/allBids")
+    })
+}
+
 
 if (logoutbtn) {
     logoutbtn.addEventListener("click", (e) => {

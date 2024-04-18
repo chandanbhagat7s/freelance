@@ -5,7 +5,7 @@ const catchAsync = require("../utils/catchAsync");
 
 exports.createProject = catchAsync(async (req, res, next) => {
     const { projectName, price, duration, about, description, deadline, title } = req.body;
-    console.log(req.user);
+
     if (!projectName, !price, !duration) {
         return next(new appError("please provide all the details", 400))
     }

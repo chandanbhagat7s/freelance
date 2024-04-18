@@ -74,7 +74,6 @@ If the signature of the JWT is valid, the verify() method will return the decode
 
 // for render page authentication protection with no error
 exports.isLoggedIn = async (req, res, next) => {
-    console.log(req.cookies);
     if (req.cookies.jwt) {
 
         try {
@@ -99,7 +98,6 @@ exports.isLoggedIn = async (req, res, next) => {
             // future use 
             req.user = freshUser
             res.locals.user = freshUser;
-            console.log(freshUser);
 
 
 

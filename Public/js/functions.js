@@ -153,7 +153,6 @@ export const submitFreeForm = async (data) => {
         if (data.password !== data.cnfPassword) {
             return alertt("danger", "please enter password and confirm password correctly")
         }
-        console.log("came******************** insiden for requesting");
         let res = await axios.post("http://127.0.0.1:3004/api/v1/users/signup", {
             ...data
         })

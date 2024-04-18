@@ -35,6 +35,25 @@ exports.login = (req, res) => {
         title: 'chandna'
     })
 }
+
+
+exports.allbids = async (req, res) => {
+    // get the data of all bida and transfet it to template
+
+    console.log("id is *****", req.params);
+
+    const bids = await RequestProject.find({
+        assignId: req.user._id,
+        bidId: req.params.id
+    }).populate("userId")
+    console.log("BIDS IS", bids);
+
+
+    res.status(200).render('allBids', {
+        title: 'chandna',
+        bids
+    })
+}
 exports.assignSignup = (req, res) => {
 
 
